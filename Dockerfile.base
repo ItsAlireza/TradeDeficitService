@@ -1,0 +1,4 @@
+FROM public.ecr.aws/lambda/python:latest
+RUN dnf install -y gcc gcc-c++
+COPY requirements.txt ${LAMBDA_TASK_ROOT}
+RUN pip install -r requirements.txt

@@ -1,0 +1,16 @@
+FROM lambda_base_comtainer:v1
+
+COPY ./src/app/ ${LAMBDA_TASK_ROOT}/src/app/
+COPY ./src/analyzer/ ${LAMBDA_TASK_ROOT}/src/analyzer/
+COPY ./files/models ${LAMBDA_TASK_ROOT}/files/models/
+
+ENV PYTHONPATH=${LAMBDA_TASK_ROOT}/published
+ENV FILEPATH=${LAMBDA_TASK_ROOT}/files
+
+ENV DETREND_PATH=models/detrend_model_dict.pkl
+ENV CLUSTER_CENTERS_PATH=models/clustrer_model.pkl
+ENV DIM_RED_PATH=models/PCA.pkl
+ENV SCALER_PATH=models/scaler.pkl
+ENV PREDICTOR_PATH=models/inference.pkl
+
+CMD [ "published.app.lambda_function.handler" ]
