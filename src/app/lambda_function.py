@@ -1,6 +1,6 @@
 import json
 import pandas as pd
-from published.analyzer.inference import inference
+from analyzer.inference import inference
 from app.serializers.inference_serializer import InferenceSerializer
 from pydantic import ValidationError
 from . import DEBUG
@@ -8,11 +8,15 @@ from . import DEBUG
 
 def handler(event, context):
     try:
-        inputs = event['body']['inputs']
-    except KeyError:
+        body = event['body']
+        if not isinstance(body, dict):
+            raise ValueError
+
+        inputs = body['inputs']
+    except (KeyError, ValueError):
         return {
             'statusCode': 400,
-            'body': json.dumps({'error': 'Invalid JSON in request body'})
+            'body': json.dumps({'error': str("Invalid request body")})
         }
 
     try:
@@ -25,13 +29,13 @@ def handler(event, context):
         }
 
     try:
-        res = inference(x)
-        result = int(res[0])
+        result = inference(x)
 
         return {
             'statusCode': 200,
-            'body': json.dumps({'predicted trade deficit is': result})
+            'body': json.dumps({'predicted trade deficit is': result[0]})
         }
+
     except Exception as e:
         error_message = str(e) if DEBUG else 'Internal Server Error'
         return {

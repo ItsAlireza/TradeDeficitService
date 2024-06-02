@@ -1,6 +1,5 @@
 from pydantic_factories import ModelFactory
-
-from app.serializers.inference_serializer import InferenceSerializer
+from src.app.serializers.inference_serializer import InferenceSerializer
 
 
 class InferenceSerializerFactory(ModelFactory[InferenceSerializer]):

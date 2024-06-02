@@ -30,11 +30,9 @@ class Models:
         scaler_model = self.loaded_models['scaler_model']
         pca_model = self.loaded_models['dim_red_model']
 
-        # Transform the data
         data_scaled = scaler_model.transform(new_point)
         data_pca = pca_model.transform(data_scaled)
 
-        # Create a DataFrame from the transformed data
         data_pca_df = pd.DataFrame(data_pca, columns=[f"PC{i + 1}" for i in range(data_pca.shape[1])], index=new_point.index)
 
         X = data_pca_df.iloc[:, :8]

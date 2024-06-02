@@ -8,8 +8,9 @@ class ModelLoader:
         self.load_models(config)
 
     def load_models(self, config):
+        files_path = os.getenv("FILEPATH")
         for model_name, path_var in config.items():
-            path = os.getenv(path_var)
+            path = os.path.join(files_path, os.getenv(path_var))
 
             if not path:
                 raise ValueError(f"Environment variable {path_var} is not set")
