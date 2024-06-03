@@ -28,3 +28,9 @@ def fixture_return_invalid_input():
 @pytest.fixture
 def fixture_models_raise_runtime_error(mocker):
     mocker.patch('analyzer.inference.models.detrender_predict', side_effect=RuntimeError('Error message'))
+
+
+@pytest.fixture
+def mock_path_env_vars(monkeypatch):
+    monkeypatch.setenv("FILEPATH", "/mock/filepath")
+    monkeypatch.setenv("MODEL_PATH_VAR", "mock_model.pkl")
