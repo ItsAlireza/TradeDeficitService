@@ -1,21 +1,11 @@
-from dotenv import load_dotenv
-import os
 import pytest
 from published.test.app.factory.inference_serializer_factory import InferenceSerializerFactory
 import numpy as np
 
 
-dotenv_path = '.env'
-if not os.path.exists(dotenv_path):
-    raise FileNotFoundError(f"The .env file does not exist at the specified path: {dotenv_path}\nfull path is: {os.path.abspath(dotenv_path)}")
-
-
-load_dotenv(dotenv_path)
-
-
 @pytest.fixture
 def fixture_return_valid_input(mocker):
-    mocker.patch('src.app.lambda_function.inference').return_value = np.random.rand(1)
+    mocker.patch('app.lambda_function.inference').return_value = np.random.rand(1)
 
     valid_input = InferenceSerializerFactory().build()
     return {
