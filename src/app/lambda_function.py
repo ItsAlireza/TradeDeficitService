@@ -30,7 +30,6 @@ def handler(event, context):
 
     try:
         result = inference(x)
-
         return {
             'statusCode': 200,
             'body': json.dumps({'predicted trade deficit is': result[0]})
@@ -42,6 +41,3 @@ def handler(event, context):
             'statusCode': 500,
             'body': json.dumps({'error': error_message})
         }
-
-
-
