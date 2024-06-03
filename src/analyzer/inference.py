@@ -1,13 +1,9 @@
-from analyzer.models import Models
-from analyzer.model_config import model_config
-from analyzer.model_loader import ModelLoader
+from numpy import ndarray
+import pandas as pd
+from . import models
 
 
-model_loader = ModelLoader(config=model_config)
-models = Models(model_loader.loaded_models)
-
-
-def inference(x):
+def inference(x: pd.DataFrame) -> ndarray:
     x_year = x['year']
     x.drop(['year'], axis=1, inplace=True)
 
@@ -19,6 +15,6 @@ def inference(x):
         yhat = models.predictor_predict(pca_results)
 
     except Exception as e:
-        raise RuntimeError(f"An error occurred during inference: {str(e)}")
+        raise RuntimeError(f"An error occurred during inference: \n\n{str(e)}")
 
     return yhat
