@@ -3,7 +3,7 @@ import pandas as pd
 from analyzer.inference import inference
 from app.serializers.inference_serializer import InferenceSerializer
 from pydantic import ValidationError
-from . import DEBUG
+from . import DEBUG, logger
 
 
 def handler(event, context):
@@ -36,6 +36,7 @@ def handler(event, context):
         }
 
     except Exception as e:
+        logger.exception(extra={'inputs': inputs_model})
         error_message = str(e) if DEBUG else 'Internal Server Error'
         return {
             'statusCode': 500,
