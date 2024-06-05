@@ -9,7 +9,7 @@ def inference(x: pd.DataFrame) -> ndarray:
 
     try:
         detrended_x = models.detrender_predict(x, x_year)
-        x = models.clusterer_predict(x, detrended_x)
+        models.clusterer_predict(x, detrended_x)
         pca_results = models.dim_reducer_predict(x)
         pca_results['year'] = x_year
         yhat = models.predictor_predict(pca_results)

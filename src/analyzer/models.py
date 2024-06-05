@@ -38,7 +38,6 @@ class Models:
         predicted_cluster = np.argmin(distances)
 
         new_point['ward_cluster_trend_corrected'] = predicted_cluster
-        return new_point
 
     @method_error_handler
     def dim_reducer_predict(self, new_point):
