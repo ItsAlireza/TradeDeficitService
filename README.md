@@ -4,7 +4,8 @@
 [![GitHub license](https://img.shields.io/github/license/ItsAlireza/TradeDeficitService)](https://github.com/ItsAlireza/TradeDeficitService/blob/main/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/ItsAlireza/TradeDeficitService)](https://github.com/ItsAlireza/TradeDeficitService/stargazers)
 
-This project explores the dataset gathered for the paper, "Empirical analysis of Marshall-Lerner Condition", which focuses on testing the Marshall-Lerner condition between the United States and Canada. In the paper, Error Correction Models were used to examine the short-run and long-run effects of changes in real exchange rates, and the evidance for both the ML condition and the J-curve.  
+This project explores the dataset gathered for the paper, "Empirical analysis of Marshall-Lerner Condition", which focuses on testing the Marshall-Lerner condition between the United States and Canada. In the paper, Error Correction Models were used to examine the short-run and long-run effects of changes in real exchange rates, and the evidance for both the ML condition and the J-curve. 
+<br><br>
 I've expanded the features used since violations of most of the classical assumptions are not going to cause a problem for prediction puposes. The goal is to utilize machine learning and unsupervied methods to predict the US budget deficit with Canada and deploy it with AWS (Lambda, S3, and CloudWatch) and Docker.
 
 ## Directory Structure
